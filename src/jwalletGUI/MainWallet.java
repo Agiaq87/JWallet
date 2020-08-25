@@ -7,6 +7,7 @@ package jwalletGUI;
 
 import JWalletGUIUtil.Messenger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import jwallet.*;
 /**
  *
@@ -76,15 +77,13 @@ public class MainWallet extends javax.swing.JFrame {
         tableIncome.setBackground(javax.swing.UIManager.getDefaults().getColor("Panel.background"));
         tableIncome.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Tipo entrata", "Nome", "Valore"
             }
         ));
+        tableIncome.setToolTipText("Tabella di visualizzazione per tutte le entrate, sia fisse che variabili");
         jScrollPane1.setViewportView(tableIncome);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Fissi"));
@@ -352,6 +351,7 @@ public class MainWallet extends javax.swing.JFrame {
         
         if (this.nameVarText.getText().isEmpty() || this.nameVarText.getText().isBlank()) {
             JOptionPane.showMessageDialog(panelIncome, "E' richiesto l'inserimento del nome", "Errore", JOptionPane.ERROR_MESSAGE);
+            this.infoCenter.setErrorMessage("E' richiesto l'inserimento del nome");
         } else {
             name = this.nameVarText.getText();
             System.out.println(name);
@@ -359,6 +359,7 @@ public class MainWallet extends javax.swing.JFrame {
             
         if (this.valueVarText.getText().isEmpty() || this.valueVarText.getText().isBlank()) {
             JOptionPane.showMessageDialog(panelIncome, "E' richiesto l'inserimento del valore", "Errore", JOptionPane.ERROR_MESSAGE);
+            this.infoCenter.setErrorMessage("E' richiesto l'inserimento del valore");
         } else {
             this.valueVarText.setText(this.valueVarText.getText().replace(",", "."));
             value = Double.parseDouble(this.valueVarText.getText()); 
@@ -376,6 +377,8 @@ public class MainWallet extends javax.swing.JFrame {
         // TODO Insert into array 
         // save into database
         // update table
+        DefaultTableModel table = (DefaultTableModel)this.tableIncome.getModel();
+        table.addRow(new Object[]{"Variabile", name, "+ " + value});
         
         this.infoCenter.setPositiveMessage("Nuova entrata variabile inserita, +" + value + "€");
         
