@@ -44,7 +44,7 @@ public class MainWallet extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         nameVarText = new javax.swing.JTextField();
         valueVarText = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
+        descriptionVarText = new javax.swing.JTextField();
         insertVarIncomeButton = new javax.swing.JButton();
         panelOutcome = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -180,10 +180,15 @@ public class MainWallet extends javax.swing.JFrame {
         valueVarText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         valueVarText.setBorder(javax.swing.BorderFactory.createTitledBorder("Valore"));
 
-        jTextField1.setBackground(new java.awt.Color(230, 228, 230));
-        jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder("Motivazione (opzionale)"));
+        descriptionVarText.setBackground(new java.awt.Color(230, 228, 230));
+        descriptionVarText.setBorder(javax.swing.BorderFactory.createTitledBorder("Motivazione (opzionale)"));
 
         insertVarIncomeButton.setText("Inserisci");
+        insertVarIncomeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insertVarIncomeButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -196,7 +201,7 @@ public class MainWallet extends javax.swing.JFrame {
                         .addComponent(nameVarText, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(valueVarText))
-                    .addComponent(jTextField1))
+                    .addComponent(descriptionVarText))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(insertVarIncomeButton)
                 .addContainerGap())
@@ -210,7 +215,7 @@ public class MainWallet extends javax.swing.JFrame {
                     .addComponent(valueVarText, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(descriptionVarText, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(insertVarIncomeButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -331,6 +336,42 @@ public class MainWallet extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_insertFixIncomeButtonActionPerformed
 
+    private void insertVarIncomeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertVarIncomeButtonActionPerformed
+        String name = "", description = "";
+        double value = 0.0;
+        
+        if (this.nameVarText.getText().isEmpty() || this.nameVarText.getText().isBlank()) {
+            JOptionPane.showMessageDialog(panelIncome, "E' richiesto l'inserimento del nome", "Errore", JOptionPane.ERROR_MESSAGE);
+        } else {
+            name = this.nameVarText.getText();
+            System.out.println(name);
+        } 
+            
+        if (this.valueVarText.getText().isEmpty() || this.valueVarText.getText().isBlank()) {
+            JOptionPane.showMessageDialog(panelIncome, "E' richiesto l'inserimento del valore", "Errore", JOptionPane.ERROR_MESSAGE);
+        } else {
+            this.valueVarText.setText(this.valueVarText.getText().replace(",", "."));
+            value = Double.parseDouble(this.valueVarText.getText()); 
+            System.out.println(value);
+        }
+        
+        if (!this.descriptionVarText.getText().isEmpty()){
+            description = this.descriptionVarText.getText();
+        }
+        
+        VariableIncome t = new VariableIncome(name, value, description);
+        
+        System.err.println(t.toString());
+        
+        // TODO Insert into array 
+        // save into database
+        // update table
+        
+        JOptionPane.showMessageDialog(panelIncome, "Valore inserito", "Conferma", JOptionPane.OK_OPTION);
+        
+        this.flushVariableData();
+    }//GEN-LAST:event_insertVarIncomeButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -342,7 +383,7 @@ public class MainWallet extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Motif".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -367,6 +408,7 @@ public class MainWallet extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField descriptionVarText;
     private javax.swing.JButton insertFixIncomeButton;
     private javax.swing.JButton insertVarIncomeButton;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -377,7 +419,6 @@ public class MainWallet extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel labelDateTime;
     private javax.swing.JLabel labelSalut;
     private javax.swing.JTextField nameFixText;
@@ -389,4 +430,10 @@ public class MainWallet extends javax.swing.JFrame {
     private javax.swing.JTextField valueFixText;
     private javax.swing.JTextField valueVarText;
     // End of variables declaration//GEN-END:variables
+
+    private void flushVariableData() {
+        this.nameVarText.setText("");
+        this.valueVarText.setText("");
+        this.descriptionVarText.setText("");
+    }
 }
