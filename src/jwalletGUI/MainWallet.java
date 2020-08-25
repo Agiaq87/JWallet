@@ -352,6 +352,7 @@ public class MainWallet extends javax.swing.JFrame {
         if (this.nameVarText.getText().isEmpty() || this.nameVarText.getText().isBlank()) {
             JOptionPane.showMessageDialog(panelIncome, "E' richiesto l'inserimento del nome", "Errore", JOptionPane.ERROR_MESSAGE);
             this.infoCenter.setErrorMessage("E' richiesto l'inserimento del nome");
+            return;
         } else {
             name = this.nameVarText.getText();
             System.out.println(name);
@@ -360,9 +361,18 @@ public class MainWallet extends javax.swing.JFrame {
         if (this.valueVarText.getText().isEmpty() || this.valueVarText.getText().isBlank()) {
             JOptionPane.showMessageDialog(panelIncome, "E' richiesto l'inserimento del valore", "Errore", JOptionPane.ERROR_MESSAGE);
             this.infoCenter.setErrorMessage("E' richiesto l'inserimento del valore");
+            return;
         } else {
-            this.valueVarText.setText(this.valueVarText.getText().replace(",", "."));
-            value = Double.parseDouble(this.valueVarText.getText()); 
+            this.valueVarText.setText(this.valueVarText.getText().replace(",", ".").replace("€", "").replace("$", ""));
+            try {
+                value = Double.parseDouble(this.valueVarText.getText()); 
+            } catch(NumberFormatException ne) {
+                JOptionPane.showMessageDialog(panelIncome, "Il valore inserito non è corretto", "Errore", JOptionPane.ERROR_MESSAGE);
+                this.infoCenter.setErrorMessage("E' stato inserito un valore non numerico");
+                this.flushVariableData();
+                return;
+            }
+            
             System.out.println(value);
         }
         
@@ -376,7 +386,6 @@ public class MainWallet extends javax.swing.JFrame {
         
         // TODO Insert into array 
         // save into database
-        // update table
         DefaultTableModel table = (DefaultTableModel)this.tableIncome.getModel();
         table.addRow(new Object[]{"Variabile", name, "+ " + value});
         
