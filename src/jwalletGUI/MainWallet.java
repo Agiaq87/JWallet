@@ -5,6 +5,7 @@
  */
 package jwalletGUI;
 
+import JWalletGUIUtil.Messenger;
 import javax.swing.JOptionPane;
 import jwallet.*;
 /**
@@ -18,6 +19,7 @@ public class MainWallet extends javax.swing.JFrame {
      */
     public MainWallet() {
         initComponents();
+        this.infoCenter = new Messenger(this.messageLabel);
     }
 
     /**
@@ -50,6 +52,7 @@ public class MainWallet extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         labelSalut = new javax.swing.JLabel();
         labelDateTime = new javax.swing.JLabel();
+        messageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,7 +104,7 @@ public class MainWallet extends javax.swing.JFrame {
         valueFixText.setBackground(new java.awt.Color(230, 228, 230));
         valueFixText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         valueFixText.setToolTipText("<html>\n<p>Inserire qui il valore della nuova entrata fissa</p></br>\n<p>E' possibile indicare i centesimi con il punto o con la virgola\n</html>");
-        valueFixText.setBorder(javax.swing.BorderFactory.createTitledBorder("Valore"));
+        valueFixText.setBorder(javax.swing.BorderFactory.createTitledBorder("Valore in €"));
         valueFixText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 valueFixTextActionPerformed(evt);
@@ -178,7 +181,7 @@ public class MainWallet extends javax.swing.JFrame {
 
         valueVarText.setBackground(new java.awt.Color(230, 228, 230));
         valueVarText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        valueVarText.setBorder(javax.swing.BorderFactory.createTitledBorder("Valore"));
+        valueVarText.setBorder(javax.swing.BorderFactory.createTitledBorder("Valore in €"));
 
         descriptionVarText.setBackground(new java.awt.Color(230, 228, 230));
         descriptionVarText.setBorder(javax.swing.BorderFactory.createTitledBorder("Motivazione (opzionale)"));
@@ -284,6 +287,10 @@ public class MainWallet extends javax.swing.JFrame {
         labelDateTime.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelDateTime.setText("DateTime ");
 
+        messageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        messageLabel.setText(" ");
+        messageLabel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -291,15 +298,18 @@ public class MainWallet extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(labelSalut, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelDateTime, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(messageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelDateTime, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(labelSalut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelDateTime, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(labelDateTime, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(messageLabel))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -367,7 +377,7 @@ public class MainWallet extends javax.swing.JFrame {
         // save into database
         // update table
         
-        JOptionPane.showMessageDialog(panelIncome, "Valore inserito", "Conferma", JOptionPane.OK_OPTION);
+        this.infoCenter.setPositiveMessage("Nuova entrata variabile inserita, +" + value + "€");
         
         this.flushVariableData();
     }//GEN-LAST:event_insertVarIncomeButtonActionPerformed
@@ -421,6 +431,7 @@ public class MainWallet extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel labelDateTime;
     private javax.swing.JLabel labelSalut;
+    private javax.swing.JLabel messageLabel;
     private javax.swing.JTextField nameFixText;
     private javax.swing.JTextField nameVarText;
     private javax.swing.JPanel panelIncome;
@@ -430,7 +441,8 @@ public class MainWallet extends javax.swing.JFrame {
     private javax.swing.JTextField valueFixText;
     private javax.swing.JTextField valueVarText;
     // End of variables declaration//GEN-END:variables
-
+    private Messenger infoCenter;
+    
     private void flushVariableData() {
         this.nameVarText.setText("");
         this.valueVarText.setText("");

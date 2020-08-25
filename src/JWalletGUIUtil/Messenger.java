@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package jwalletGUI;
+package JWalletGUIUtil;
 
 import java.awt.Color;
 import javax.swing.JLabel;
 
 /**
- * Class to manage message of main application with an Swing.jLabel
+ * Display message in main view
  * @author alessandrogiaquinto
  */
 public class Messenger {
@@ -22,12 +22,10 @@ public class Messenger {
         this.display = display;
     }
     
-    
-    public void setPositiveMsg(String msg) {
-        display.setForeground(Color.GREEN);
-        display.setText(msg);
+    public void setPositiveMessage(String msg) {
+        this.display.setForeground(Color.GREEN);
+        this.display.setText(msg);
     }
     
-    
-    private javax.swing.JLabel display;
+    private final JLabel display;
 }

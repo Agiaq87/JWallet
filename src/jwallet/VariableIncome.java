@@ -22,6 +22,11 @@ public class VariableIncome extends Income {
         super(name, value);
         this.description = "";
     }
+
+    public VariableIncome(String name, double value, String description) {
+        super(name, value);
+        this.description = description;
+    }
     
     /**
      * Return description of
