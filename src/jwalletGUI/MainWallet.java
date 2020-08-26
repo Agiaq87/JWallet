@@ -73,6 +73,7 @@ public class MainWallet extends javax.swing.JFrame {
         jTabbedPane1.addTab("Riepilogo", panelRecap);
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Tabella entrate"));
+        jScrollPane1.setToolTipText("Elenco di tutte le entrate registrate e inserite in questa sessione");
 
         tableIncome.setBackground(javax.swing.UIManager.getDefaults().getColor("Panel.background"));
         tableIncome.setModel(new javax.swing.table.DefaultTableModel(
@@ -89,6 +90,7 @@ public class MainWallet extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Fissi"));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Nuova entrata fissa"));
+        jPanel2.setToolTipText("<html>\n<p>In questo contesto è possibile inserire le entrate <b>previste</b> o <b>già note</b></p>\n</html>");
 
         nameFixText.setBackground(new java.awt.Color(230, 228, 230));
         nameFixText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -173,16 +175,20 @@ public class MainWallet extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Variabili"));
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Nuova entrata variabile"));
+        jPanel5.setToolTipText("<html>\n<p>In questo contesto è possibile inserire le entrate <b>inattese</b> o <b>non prevedibili a priori</b></p>\n</html>");
 
         nameVarText.setBackground(new java.awt.Color(230, 228, 230));
         nameVarText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        nameVarText.setToolTipText("Inserire qui il nome dell'entrata");
         nameVarText.setBorder(javax.swing.BorderFactory.createTitledBorder("Nome"));
 
         valueVarText.setBackground(new java.awt.Color(230, 228, 230));
         valueVarText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        valueVarText.setToolTipText("Inserire qui il valore dell'entrata");
         valueVarText.setBorder(javax.swing.BorderFactory.createTitledBorder("Valore in €"));
 
         descriptionVarText.setBackground(new java.awt.Color(230, 228, 230));
+        descriptionVarText.setToolTipText("E' consigliato aggiungere una motivazione");
         descriptionVarText.setBorder(javax.swing.BorderFactory.createTitledBorder("Motivazione (opzionale)"));
 
         insertVarIncomeButton.setText("Inserisci");
@@ -288,6 +294,7 @@ public class MainWallet extends javax.swing.JFrame {
 
         messageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         messageLabel.setText(" ");
+        messageLabel.setToolTipText("Qui vengono visualizzate tutte le info");
         messageLabel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);

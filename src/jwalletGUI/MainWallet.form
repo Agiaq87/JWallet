@@ -120,6 +120,7 @@
                     <TitledBorder title="Tabella entrate"/>
                   </Border>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Elenco di tutte le entrate registrate e inserite in questa sessione"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -177,6 +178,7 @@
                         <TitledBorder title="Nuova entrata fissa"/>
                       </Border>
                     </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;&lt;p&gt;In questo contesto &#xe8; possibile inserire le entrate &lt;b&gt;previste&lt;/b&gt; o &lt;b&gt;gi&#xe0; note&lt;/b&gt;&lt;/p&gt;&#xa;&lt;/html&gt;"/>
                   </Properties>
 
                   <Layout>
@@ -325,6 +327,7 @@
                         <TitledBorder title="Nuova entrata variabile"/>
                       </Border>
                     </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;&lt;p&gt;In questo contesto &#xe8; possibile inserire le entrate &lt;b&gt;inattese&lt;/b&gt; o &lt;b&gt;non prevedibili a priori&lt;/b&gt;&lt;/p&gt;&#xa;&lt;/html&gt;"/>
                   </Properties>
 
                   <Layout>
@@ -371,6 +374,7 @@
                           <Color blue="e6" green="e4" red="e6" type="rgb"/>
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="0"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Inserire qui il nome dell&apos;entrata"/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                             <TitledBorder title="Nome"/>
@@ -384,6 +388,7 @@
                           <Color blue="e6" green="e4" red="e6" type="rgb"/>
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="0"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Inserire qui il valore dell&apos;entrata"/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                             <TitledBorder title="Valore in &#x20ac;"/>
@@ -396,6 +401,7 @@
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="e6" green="e4" red="e6" type="rgb"/>
                         </Property>
+                        <Property name="toolTipText" type="java.lang.String" value="E&apos; consigliato aggiungere una motivazione"/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                             <TitledBorder title="Motivazione (opzionale)"/>
@@ -496,6 +502,7 @@
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value=" "/>
+            <Property name="toolTipText" type="java.lang.String" value="Qui vengono visualizzate tutte le info"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
                 <BevelBorder/>
