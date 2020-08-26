@@ -112,7 +112,7 @@ public class MainWallet extends javax.swing.JFrame {
             }
         });
 
-        timeFixedComboBok.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Giornaliera (Ogni giorno)", "Feriale (da Lunedì al Venerdì)", "Festiva (dal Sabato a Domenica)", "Settimanale (Ogni settimana)", "Bisettimanale (Ogni due settimane)", "Mensile", "Bimestrale", "Semestrale", "Annuale" }));
+        timeFixedComboBok.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Giornaliera", "Settimanale", "Bisettimanale", "Mensile", "Bimestrale", "Semestrale", "Annuale" }));
         timeFixedComboBok.setToolTipText("<html>\n<p>Indicare ogni quanto si presenta l'entrata:</p> </br>\n<p><b>Giornaliera</b>: Si presenta ogni giorno</p></br>\n<p><b>Feriale</b>: Si presenta solo dal Lunedì al Venerdì</p></br>\n<p><b>Festiva</b>: Si presenta solo dal Sabato alla Domenica</p></br>\n<p>etc...</p>\n</html>\n");
         timeFixedComboBok.setBorder(javax.swing.BorderFactory.createTitledBorder("Occorrenza nuova entrata"));
         timeFixedComboBok.addActionListener(new java.awt.event.ActionListener() {

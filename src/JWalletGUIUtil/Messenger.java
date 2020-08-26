@@ -22,8 +22,17 @@ public class Messenger {
         this.display = display;
     }
     
+    /**
+     * Set a message with green color
+     * @param msg 
+     */
     public void setPositiveMessage(String msg) {
         this.display.setForeground(Color.GREEN);
+        this.display.setText(msg);
+    }
+    
+    public void setErrorMessage(String msg) {
+        this.display.setForeground(Color.red);
         this.display.setText(msg);
     }
     
