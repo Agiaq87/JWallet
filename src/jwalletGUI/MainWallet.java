@@ -41,7 +41,7 @@ public class MainWallet extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         nameFixText = new javax.swing.JTextField();
         valueFixText = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        timeFixedComboBok = new javax.swing.JComboBox<>();
         insertFixIncomeButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -112,12 +112,12 @@ public class MainWallet extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Giornaliera (Ogni giorno)", "Feriale (da Lunedì al Venerdì)", "Festiva (dal Sabato a Domenica)", "Settimanale (Ogni settimana)", "Bisettimanale (Ogni due settimane)", "Mensile", "Bimestrale", "Semestrale", "Annuale" }));
-        jComboBox1.setToolTipText("<html>\n<p>Indicare ogni quanto si presenta l'entrata:</p> </br>\n<p><b>Giornaliera</b>: Si presenta ogni giorno</p></br>\n<p><b>Feriale</b>: Si presenta solo dal Lunedì al Venerdì</p></br>\n<p><b>Festiva</b>: Si presenta solo dal Sabato alla Domenica</p></br>\n<p>etc...</p>\n</html>\n");
-        jComboBox1.setBorder(javax.swing.BorderFactory.createTitledBorder("Occorrenza nuova entrata"));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        timeFixedComboBok.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Giornaliera (Ogni giorno)", "Feriale (da Lunedì al Venerdì)", "Festiva (dal Sabato a Domenica)", "Settimanale (Ogni settimana)", "Bisettimanale (Ogni due settimane)", "Mensile", "Bimestrale", "Semestrale", "Annuale" }));
+        timeFixedComboBok.setToolTipText("<html>\n<p>Indicare ogni quanto si presenta l'entrata:</p> </br>\n<p><b>Giornaliera</b>: Si presenta ogni giorno</p></br>\n<p><b>Feriale</b>: Si presenta solo dal Lunedì al Venerdì</p></br>\n<p><b>Festiva</b>: Si presenta solo dal Sabato alla Domenica</p></br>\n<p>etc...</p>\n</html>\n");
+        timeFixedComboBok.setBorder(javax.swing.BorderFactory.createTitledBorder("Occorrenza nuova entrata"));
+        timeFixedComboBok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                timeFixedComboBokActionPerformed(evt);
             }
         });
 
@@ -135,7 +135,7 @@ public class MainWallet extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(timeFixedComboBok, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(nameFixText, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -153,7 +153,7 @@ public class MainWallet extends javax.swing.JFrame {
                     .addComponent(valueFixText, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+                    .addComponent(timeFixedComboBok, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
                     .addComponent(insertFixIncomeButton))
                 .addContainerGap())
         );
@@ -344,12 +344,53 @@ public class MainWallet extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_valueFixTextActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void timeFixedComboBokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timeFixedComboBokActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_timeFixedComboBokActionPerformed
 
     private void insertFixIncomeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertFixIncomeButtonActionPerformed
-        // TODO add your handling code here:
+        String name= "";
+        double value = 0.0;
+        
+        if (this.nameFixText.getText().isEmpty() || this.nameFixText.getText().isBlank()) {
+            JOptionPane.showMessageDialog(panelIncome, "E' richiesto l'inserimento del nome", "Errore", JOptionPane.ERROR_MESSAGE);
+            this.infoCenter.setErrorMessage("E' richiesto l'inserimento del nome");
+            return;
+        } else {
+            name = this.nameFixText.getText();
+            System.out.println(name);
+        } 
+            
+        if (this.valueFixText.getText().isEmpty() || this.valueFixText.getText().isBlank()) {
+            JOptionPane.showMessageDialog(panelIncome, "E' richiesto l'inserimento del valore", "Errore", JOptionPane.ERROR_MESSAGE);
+            this.infoCenter.setErrorMessage("E' richiesto l'inserimento del valore");
+            return;
+        } else {
+            this.valueFixText.setText(this.valueFixText.getText().replace(",", ".").replace("€", "").replace("$", ""));
+            try {
+                value = Double.parseDouble(this.valueFixText.getText()); 
+            } catch(NumberFormatException ne) {
+                JOptionPane.showMessageDialog(panelIncome, "Il valore inserito non è corretto", "Errore", JOptionPane.ERROR_MESSAGE);
+                this.infoCenter.setErrorMessage("E' stato inserito un valore non numerico");
+                this.flushFixedData();
+                return;
+            }
+            
+            System.out.println(value);
+        }
+        
+        //VariableIncome t = new VariableIncome(name, value, description);
+        
+        //System.err.println(t.toString());
+        
+        // TODO Insert into array 
+        // save into database
+        DefaultTableModel table = (DefaultTableModel)this.tableIncome.getModel();
+        table.addRow(new Object[]{"Variabile", name, "+ " + value});
+        
+        this.infoCenter.setPositiveMessage("Nuova entrata variabile inserita, +" + value + "€");
+        
+        this.flushFixedData();
     }//GEN-LAST:event_insertFixIncomeButtonActionPerformed
 
     private void insertVarIncomeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertVarIncomeButtonActionPerformed
@@ -440,7 +481,6 @@ public class MainWallet extends javax.swing.JFrame {
     private javax.swing.JTextField descriptionVarText;
     private javax.swing.JButton insertFixIncomeButton;
     private javax.swing.JButton insertVarIncomeButton;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -457,6 +497,7 @@ public class MainWallet extends javax.swing.JFrame {
     private javax.swing.JPanel panelOutcome;
     private javax.swing.JPanel panelRecap;
     private javax.swing.JTable tableIncome;
+    private javax.swing.JComboBox<String> timeFixedComboBok;
     private javax.swing.JTextField valueFixText;
     private javax.swing.JTextField valueVarText;
     // End of variables declaration//GEN-END:variables
@@ -466,5 +507,11 @@ public class MainWallet extends javax.swing.JFrame {
         this.nameVarText.setText("");
         this.valueVarText.setText("");
         this.descriptionVarText.setText("");
+    }
+    
+    private void flushFixedData() {
+        this.nameFixText.setText("");
+        this.valueFixText.setText("");
+        this.timeFixedComboBok.setSelectedIndex(0);
     }
 }
