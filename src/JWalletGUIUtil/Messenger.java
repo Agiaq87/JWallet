@@ -40,8 +40,21 @@ public class Messenger {
         this.display.setText(msg);
     }
     
+    /**
+     * Set an error message with red color
+     * @param msg 
+     */
     public void setErrorMessage(String msg) {
         this.display.setForeground(Color.red);
+        this.display.setText(msg);
+    }
+    
+    /**
+     * Set a normal message
+     * @param msg 
+     */
+    public void setMsg(String msg) {
+        this.display.setForeground(Color.BLUE);
         this.display.setText(msg);
     }
     

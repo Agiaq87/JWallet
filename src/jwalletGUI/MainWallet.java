@@ -14,10 +14,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package jwalletGUI;
 
+import JAddressBook.AddressEntry;
+import JWallet.VariableIncome;
 import JWalletGUIUtil.Messenger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import jwallet.*;
 /**
  *
  * @author alessandrogiaquinto
@@ -59,6 +60,19 @@ public class MainWallet extends javax.swing.JFrame {
         descriptionVarText = new javax.swing.JTextField();
         insertVarIncomeButton = new javax.swing.JButton();
         panelOutcome = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tableAddress = new javax.swing.JTable();
+        jPanel7 = new javax.swing.JPanel();
+        jTextField1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        userAddress = new javax.swing.JTextField();
+        telAddress = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        emailAddress = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         labelSalut = new javax.swing.JLabel();
         labelDateTime = new javax.swing.JLabel();
@@ -67,6 +81,7 @@ public class MainWallet extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTabbedPane1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTabbedPane1.setPreferredSize(new java.awt.Dimension(13, 40));
 
         javax.swing.GroupLayout panelRecapLayout = new javax.swing.GroupLayout(panelRecap);
         panelRecap.setLayout(panelRecapLayout);
@@ -76,7 +91,7 @@ public class MainWallet extends javax.swing.JFrame {
         );
         panelRecapLayout.setVerticalGroup(
             panelRecapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 645, Short.MAX_VALUE)
+            .addGap(0, 532, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Riepilogo", panelRecap);
@@ -157,9 +172,9 @@ public class MainWallet extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nameFixText, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(valueFixText, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(valueFixText, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nameFixText, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(timeFixedComboBok, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
@@ -178,7 +193,7 @@ public class MainWallet extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Variabili"));
@@ -269,10 +284,10 @@ public class MainWallet extends javax.swing.JFrame {
             .addGroup(panelIncomeLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelIncomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(panelIncomeLayout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(104, 104, 104)
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -287,10 +302,165 @@ public class MainWallet extends javax.swing.JFrame {
         );
         panelOutcomeLayout.setVerticalGroup(
             panelOutcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 645, Short.MAX_VALUE)
+            .addGap(0, 532, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Uscite", panelOutcome);
+
+        jScrollPane2.setBorder(javax.swing.BorderFactory.createTitledBorder("Rubrica"));
+
+        tableAddress.setAutoCreateRowSorter(true);
+        tableAddress.setBackground(new java.awt.Color(230, 228, 230));
+        tableAddress.setBorder(javax.swing.BorderFactory.createTitledBorder("Rubrica"));
+        tableAddress.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null}
+            },
+            new String [] {
+                "Utente", "Telefono", "Email"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tableAddress.setToolTipText("La tua rubrica");
+        tableAddress.setGridColor(new java.awt.Color(204, 204, 204));
+        tableAddress.setPreferredSize(new java.awt.Dimension(225, 0));
+        tableAddress.setShowGrid(true);
+        jScrollPane2.setViewportView(tableAddress);
+
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Ricerca"));
+
+        jTextField1.setBackground(new java.awt.Color(230, 228, 230));
+        jTextField1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder("Cerca per nome"));
+        jTextField1.setMinimumSize(new java.awt.Dimension(13, 40));
+
+        jButton1.setText("Ricerca");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jTextField2.setBackground(new java.awt.Color(230, 228, 230));
+        jTextField2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextField2.setBorder(javax.swing.BorderFactory.createTitledBorder("Cerca per numero"));
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("oppure");
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(24, 24, 24)
+                .addComponent(jButton1)
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Inserisci nuovo"));
+
+        userAddress.setBackground(new java.awt.Color(230, 228, 230));
+        userAddress.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        userAddress.setBorder(javax.swing.BorderFactory.createTitledBorder("Utente"));
+
+        telAddress.setBackground(new java.awt.Color(230, 228, 230));
+        telAddress.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        telAddress.setBorder(javax.swing.BorderFactory.createTitledBorder("Numero"));
+
+        jButton2.setText("Inserisci");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        emailAddress.setBackground(new java.awt.Color(230, 228, 230));
+        emailAddress.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        emailAddress.setBorder(javax.swing.BorderFactory.createTitledBorder("E-mail"));
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(emailAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
+                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(userAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
+                        .addComponent(telAddress)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addContainerGap())
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton2)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(userAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(telAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(emailAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE)))
+        );
+
+        jTabbedPane1.addTab("Rubrica", jPanel6);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -332,12 +502,12 @@ public class MainWallet extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -388,7 +558,9 @@ public class MainWallet extends javax.swing.JFrame {
             System.out.println(value);
         }
         
-        //VariableIncome t = new VariableIncome(name, value, description);
+        //String t = this.timeFixedComboBok.getSelectedItem();
+        
+        //FixedIncome t = new FixedIncome(name,value)
         
         //System.err.println(t.toString());
         
@@ -451,6 +623,47 @@ public class MainWallet extends javax.swing.JFrame {
         this.flushVariableData();
     }//GEN-LAST:event_insertVarIncomeButtonActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String user, tel, email;
+        
+        try {
+            user = this.userAddress.getText();
+        } catch (NullPointerException ne) {
+            JOptionPane.showMessageDialog(panelIncome, "Non è possibile tralasciare il campo Utente", "ERRORE", JOptionPane.ERROR_MESSAGE);
+            this.infoCenter.setErrorMessage("Non è possibile tralasciare il campo Utente");
+            return;
+        }
+        
+        try {
+            tel = this.telAddress.getText();
+        } catch (NullPointerException ne) {
+            JOptionPane.showMessageDialog(panelIncome, "Non è possibile tralasciare il campo Numero", "ERRORE", JOptionPane.ERROR_MESSAGE);
+            this.infoCenter.setErrorMessage("Non è possibile tralasciare il campo Numero");
+            return;
+        }
+        
+        try {
+            email = this.emailAddress.getText();
+        } catch (NullPointerException ne) {
+            JOptionPane.showMessageDialog(panelIncome, "Non è possibile tralasciare il campo Email", "ERRORE", JOptionPane.ERROR_MESSAGE);
+            this.infoCenter.setErrorMessage("Non è possibile tralasciare il campo Email");
+            return;
+        }
+        
+        AddressEntry newEntry = new AddressEntry(user,tel,email); 
+        
+        DefaultTableModel table = (DefaultTableModel)this.tableAddress.getModel();
+        table.addRow(new Object[]{user,tel,email});
+        
+        this.infoCenter.setMsg("Il record è stato inserito correttamente in rubrica");
+        
+        System.err.println(newEntry.toString());
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -488,15 +701,25 @@ public class MainWallet extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField descriptionVarText;
+    private javax.swing.JTextField emailAddress;
     private javax.swing.JButton insertFixIncomeButton;
     private javax.swing.JButton insertVarIncomeButton;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel labelDateTime;
     private javax.swing.JLabel labelSalut;
     private javax.swing.JLabel messageLabel;
@@ -505,8 +728,11 @@ public class MainWallet extends javax.swing.JFrame {
     private javax.swing.JPanel panelIncome;
     private javax.swing.JPanel panelOutcome;
     private javax.swing.JPanel panelRecap;
+    private javax.swing.JTable tableAddress;
     private javax.swing.JTable tableIncome;
+    private javax.swing.JTextField telAddress;
     private javax.swing.JComboBox<String> timeFixedComboBok;
+    private javax.swing.JTextField userAddress;
     private javax.swing.JTextField valueFixText;
     private javax.swing.JTextField valueVarText;
     // End of variables declaration//GEN-END:variables
