@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="JWallet">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/JWallet.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

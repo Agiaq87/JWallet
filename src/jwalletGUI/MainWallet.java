@@ -17,6 +17,12 @@ package jwalletGUI;
 import JAddressBook.AddressEntry;
 import JWallet.VariableIncome;
 import JWalletGUIUtil.Messenger;
+import JWalletSQL.DBNotConnectedException;
+import JWalletSQL.DBNotFoundException;
+import JWalletSQL.DriverNotRegisterException;
+import JWalletSQL.JWalletDBLite;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 /**
@@ -31,8 +37,15 @@ public class MainWallet extends javax.swing.JFrame {
     public MainWallet() {
         initComponents();
         this.infoCenter = new Messenger(this.messageLabel);
+        initDB();
     }
-
+    
+    public static void initDB() {
+        if (JWalletDBLite.makeReady()) {
+            System.err.println("DB OK");
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
